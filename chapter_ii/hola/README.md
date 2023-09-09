@@ -74,3 +74,7 @@ sequelize init
 ```
 sequelize --help
 ```
+## winston logger
+```
+pnpm add winston
+```
