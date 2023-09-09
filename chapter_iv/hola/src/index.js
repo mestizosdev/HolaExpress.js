@@ -10,19 +10,20 @@ dotenv.config({ path: path.join(__dirname, '/config/config.env') })
 
 const server = express()
 
-if (process.env.NODE_ENV === 'development') {
+const PORT = process.env.PORT
+const ENV = process.env.NODE_ENV
+
+if (ENV === 'development') {
   server.use(morgan('dev'))
+  swaggerDocs(server, PORT)
 }
 
 for (const route in routes) {
   server.use(routes[route])
 }
 
-const PORT = process.env.PORT
-
 server.listen(PORT, () => {
   console.log(
-    `Server running in ${process.env.NODE_ENV} mode on port ${PORT}`
+    `Server running in ${ENV} mode on port ${PORT}`
   )
-  swaggerDocs(server, PORT)
 })
