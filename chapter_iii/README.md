@@ -1,14 +1,14 @@
 # Chapter I
 
 ## Content
-- Create user and database on PostgreSQL
+- Create documentation with JSDoc
 - Sequelize
 - Add endpoint version with raw query
 - Add ErrorMessage class
 - Winston logger
 
 ## Resources
-- https://sequelize.org/docs/v6/getting-started/
+- https://jsdoc.app/
 
 ## Install dependencies
 ```
