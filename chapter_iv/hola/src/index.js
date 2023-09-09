@@ -4,6 +4,7 @@ const path = require('path')
 const morgan = require('morgan')
 
 const routes = require('./routes')
+const { swaggerDocs } = require('./modules/swagger/routes')
 
 dotenv.config({ path: path.join(__dirname, '/config/config.env') })
 
@@ -23,4 +24,5 @@ server.listen(PORT, () => {
   console.log(
     `Server running in ${process.env.NODE_ENV} mode on port ${PORT}`
   )
+  swaggerDocs(server, PORT)
 })

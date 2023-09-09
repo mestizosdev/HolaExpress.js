@@ -1,6 +1,6 @@
 {
   "name": "hola",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Jorge Luis",
   "license": "MIT",
   "description": "",
@@ -8,7 +8,8 @@
   "scripts": {
     "dev": "nodemon src/index.js",
     "lint": "standard src --fix",
-    "doc": "jsdoc -c jsdoc.json"
+    "doc": "jsdoc -c jsdoc.json",
+    "swagger": "node src/swagger.js"
   },
   "dependencies": {
     "dotenv": "^16.3.1",
@@ -24,6 +25,8 @@
     "jsdoc-http-plugin": "^0.3.2",
     "morgan": "^1.10.0",
     "nodemon": "^3.0.1",
-    "standard": "^17.1.0"
+    "standard": "^17.1.0",
+    "swagger-autogen": "^2.23.5",
+    "swagger-ui-express": "^5.0.0"
   }
 }

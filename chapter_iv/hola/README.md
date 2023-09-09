@@ -21,12 +21,12 @@ const PORT = process.env.PORT
 const doc = {
   info: {
     version: '1.0.0',
-    title: 'Overlord.js'
+    title: 'HolaExpress.js'
   },
   host: `localhost:${PORT}`
 }
 
-const outputFile = '../swagger.json'
+const outputFile = 'src/modules/swagger/swagger.json'
 const endpointsFiles = ['src/modules/ping/routes.js', 'src/modules/version/routes.js']
 
 swaggerAutogen(outputFile, endpointsFiles, doc)
@@ -44,7 +44,20 @@ swaggerAutogen(outputFile, endpointsFiles, doc)
 ```
 pnpm run swagger
 ```
+## Create module swagger and create routes.js
+```
+const swaggerUI = require('swagger-ui-express')
+const swaggerJson = require('./swagger.json')
+
+const swaggerDocs = (app, port) => {
+  app.use('/swagger', swaggerUI.serve, swaggerUI.setup(swaggerJson))
+}
+
+module.exports = { swaggerDocs }
+```
 ## Run
 ```
 pnpm run dev
 ```
+## Open in brower:
+- http://localhost:3000/swagger/

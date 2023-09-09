@@ -4,7 +4,7 @@
 - Add Swagger
 
 ## Resources
-- https://jsdoc.app/
+- https://github.com/scottie1984/swagger-ui-express
 
 ## Install dependencies
 ```

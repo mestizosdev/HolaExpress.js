@@ -10,6 +10,8 @@ const ErrorMessage = require('../../../utils/error-message')
  * @path {GET} /version
 */
 exports.getVersion = async (req, res) => {
+  // #swagger.description = 'Get name application, database, os and node version'
+  // #swagger.tags = ['Version']
   try {
     const version = await versionService.getVersion()
 
