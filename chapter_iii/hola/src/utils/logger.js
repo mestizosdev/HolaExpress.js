@@ -1,3 +1,4 @@
+/** @module util/logger */
 const { createLogger, format, transports } = require('winston')
 
 module.exports = createLogger({

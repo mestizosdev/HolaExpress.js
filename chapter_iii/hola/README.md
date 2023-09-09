@@ -20,18 +20,16 @@ pnpm add -D docdash
 ```
 ## Add jsdoc command to package.json
 ```
-pnpm doc
+"scripts": {
+    "dev": "nodemon src/index.js",
+    "lint": "standard src --fix",
+    "doc": "jsdoc -c jsdoc.json"
+  },
 ```
-## Add standard command to package.json
-Only scan src folder
 ```
-"standard": "standard src --fix"
-```
-## Install all dependencies of the project
-```
-pnpm i
+pnpm run doc
 ```
 ## Run
 ```
-pnpm start
+pnpm run dev
 ```

@@ -1,8 +1,14 @@
+/** @module version/controllers/version */
 const versionService = require('../services/version')
 const os = require('os')
 const pkg = require('../../../../package.json')
 const ErrorMessage = require('../../../utils/error-message')
 
+/**
+ * Get name application, database, os and node version
+ * @name Get application version
+ * @path {GET} /version
+*/
 exports.getVersion = async (req, res) => {
   try {
     const version = await versionService.getVersion()

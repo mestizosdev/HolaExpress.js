@@ -1,3 +1,4 @@
+/** @module util/error-message */
 const logger = require('./logger')
 
 class ErrorMessage extends Error {
