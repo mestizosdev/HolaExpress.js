@@ -3,6 +3,8 @@ const dotenv = require('dotenv')
 const path = require('path')
 const morgan = require('morgan')
 
+const routes = require('./routes')
+
 dotenv.config({ path: path.join(__dirname, '/config/config.env') })
 
 const server = express()
@@ -11,8 +13,9 @@ if (process.env.NODE_ENV === 'development') {
   server.use(morgan('dev'))
 }
 
-server.use(require('./modules/ping/routes'))
-server.use(require('./modules/version/routes'))
+for (const route in routes) {
+  server.use(routes[route])
+}
 
 const PORT = process.env.PORT
 
