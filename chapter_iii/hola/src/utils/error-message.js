@@ -10,7 +10,7 @@ class ErrorMessage extends Error {
     logger.error(` 
           Message: ${this.message}. 
           Content: ${this.content}. 
-          Filename: ${this.filename}. 
+          Filename: ${this.filename}
           `)
   }
 }
