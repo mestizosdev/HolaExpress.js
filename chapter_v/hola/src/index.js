@@ -18,6 +18,8 @@ if (ENV === 'development') {
   swaggerDocs(server, PORT)
 }
 
+server.use(express.json()) // body parser
+
 for (const route in routes) {
   server.use(routes[route])
 }

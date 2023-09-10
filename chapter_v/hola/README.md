@@ -45,3 +45,7 @@ sequelize db:seed:all
 ```
 sequelize db:seed:undo:all
 ```
+## Password generate
+```
+pnpm add generate-password
+```
