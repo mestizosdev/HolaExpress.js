@@ -1,13 +1,13 @@
-/** @module utils/error-message */
+/** @module utils/warn-message */
 const logger = require('./logger')
 
-class ErrorMessage extends Error {
+class WarnMessage extends Error {
   constructor (message, content, filename) {
     super(message)
     this.content = content
     this.filename = filename
 
-    logger.error(` 
+    logger.warn(` 
           Message: ${this.message}. 
           Content: ${this.content}. 
           Filename: ${this.filename}
@@ -15,4 +15,4 @@ class ErrorMessage extends Error {
   }
 }
 
-module.exports = ErrorMessage
+module.exports = WarnMessage

@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>utils/error-message.js - Documentation</title>
+    <title>modules/user/services/get-user-by-email.js - Documentation</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -35,7 +35,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">utils/error-message.js</h1>
+    <h1 class="page-title">modules/user/services/get-user-by-email.js</h1>
     
 
     
@@ -45,24 +45,25 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/** @module utils/error-message */
-const logger = require('./logger')
+            <pre class="prettyprint source linenums"><code>/** @module user/services/user */
+const db = require('../../../models')
 
-class ErrorMessage extends Error {
-  constructor (message, content, filename) {
-    super(message)
-    this.content = content
-    this.filename = filename
+/**
+ * Get user by email
+ *
+ * @async
+ * @param {string} email - Username
+ * @returns {User} user
+*/
+exports.getByEmail = async (email) => {
+  const user = await db.User.findOne({
+    where: { email }
+  })
 
-    logger.error(` 
-          Message: ${this.message}. 
-          Content: ${this.content}. 
-          Filename: ${this.filename}
-          `)
+  if (user) {
+    return user
   }
 }
-
-module.exports = ErrorMessage
 </code></pre>
         </article>
     </section>

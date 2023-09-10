@@ -1,12 +1,12 @@
-/** @module user/controllers/create-user */
+/** @module user/controllers/sign-up */
 
 const userService = require('../services')
-const passwordUtil = require('../../../utils/password')
 const validate = require('./helpers/is-username-or-email-register')
+const WarnMessage = require('../../../utils/warn-message')
 
 /**
- * @name Create user
- * @path {POST} /overlord/v1/user
+ * @name signUp user
+ * @path {POST} /signup
  */
 exports.signUp = async (req, res) => {
   // #swagger.tags = ['User']
@@ -15,23 +15,17 @@ exports.signUp = async (req, res) => {
 
   const isUserOrEmailExist = await validate.isUsernameOrEmailRegister(
     username, email
-    )
+  )
 
   if (isUserOrEmailExist.exist) {
+    const warn = new WarnMessage(isUserOrEmailExist.message, '', __filename)
     return res.status(404).json(
-      { message: 'User already exist' }
+      warn.message
     )
   }
 
-  // Conditional operator or ternary operator
-  // condition ? expression if true : expression if false
-  const passwordToSave = (typeof password !== 'undefined' &&
-    password !== null)
-    ? password
-    : passwordUtil.generate()
-
   const user = await userService.create(
-    { username, email, password: passwordToSave }
+    { username, email, password }
   )
 
   res.status(200).json({

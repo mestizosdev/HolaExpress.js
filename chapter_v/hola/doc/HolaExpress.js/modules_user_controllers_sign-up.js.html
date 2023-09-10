@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>utils/error-message.js - Documentation</title>
+    <title>modules/user/controllers/sign-up.js - Documentation</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -35,7 +35,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">utils/error-message.js</h1>
+    <h1 class="page-title">modules/user/controllers/sign-up.js</h1>
     
 
     
@@ -45,24 +45,54 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/** @module utils/error-message */
-const logger = require('./logger')
+            <pre class="prettyprint source linenums"><code>/** @module user/controllers/create-user */
 
-class ErrorMessage extends Error {
-  constructor (message, content, filename) {
-    super(message)
-    this.content = content
-    this.filename = filename
+const userService = require('../services')
+const passwordUtil = require('../../../utils/password')
+const validate = require('./helpers/is-username-or-email-register')
+const WarnMessage = require('../../../utils/warn-message')
 
-    logger.error(` 
-          Message: ${this.message}. 
-          Content: ${this.content}. 
-          Filename: ${this.filename}
-          `)
+/**
+ * @name Create user
+ * @path {POST} /overlord/v1/user
+ */
+exports.signUp = async (req, res) => {
+  // #swagger.tags = ['User']
+
+  const { username, email, password } = req.body
+
+  const isUserOrEmailExist = await validate.isUsernameOrEmailRegister(
+    username, email
+  )
+
+  if (isUserOrEmailExist.exist) {
+    return res.status(404).json(
+      new WarnMessage(
+        isUserOrEmailExist.message,
+        '',
+        __filename
+      )
+    )
   }
-}
 
-module.exports = ErrorMessage
+  // Conditional operator or ternary operator
+  // condition ? expression if true : expression if false
+  const passwordToSave = (typeof password !== 'undefined' &amp;&amp;
+    password !== null)
+    ? password
+    : passwordUtil.generate()
+
+  const user = await userService.create(
+    { username, email, password: passwordToSave }
+  )
+
+  res.status(200).json({
+    username: user.username,
+    email: user.email,
+    createdAt: user.createdAt,
+    status: user.status
+  })
+}
 </code></pre>
         </article>
     </section>

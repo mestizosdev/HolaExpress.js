@@ -14,7 +14,8 @@ exports.create = async (userNew) => {
     username: userNew.username,
     email: userNew.email.toLowerCase(),
     password: await passwordUtil.encrypt(userNew.password),
-    role: userNew.role
+    role: userNew.role,
+    status: userNew.status
   })
 
   return await user.save()
