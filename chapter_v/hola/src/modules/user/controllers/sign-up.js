@@ -13,9 +13,11 @@ exports.signUp = async (req, res) => {
 
   const { username, email, password } = req.body
 
-  const isUserExist = await validate.isUsernameOrEmailRegister(username, email)
+  const isUserOrEmailExist = await validate.isUsernameOrEmailRegister(
+    username, email
+    )
 
-  if (isUserExist.exist) {
+  if (isUserOrEmailExist.exist) {
     return res.status(404).json(
       { message: 'User already exist' }
     )
