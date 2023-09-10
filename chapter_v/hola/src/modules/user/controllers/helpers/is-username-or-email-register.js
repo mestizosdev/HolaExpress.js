@@ -2,18 +2,18 @@
 const userService = require('../../services')
 
 async function isUsernameOrEmailRegister (username, email) {
-  let userExist = await userService.getByUsername(username)
+  let exist = await userService.getByUsername(username)
 
-  if (userExist) {
+  if (exist) {
     return {
       exist: true,
       message: `The username ${username} already exist`
     }
   }
 
-  userExist = await userService.getByEmail(email)
+  exist = await userService.getByEmail(email)
 
-  if (userExist) {
+  if (exist) {
     return {
       exist: true,
       message: `The email ${email} already exist`
