@@ -10,7 +10,7 @@ sequelize model:generate --name User --attributes \
 username:string,\
 password:string,\
 email:string,\
-profile:string,\
+role:string,\
 status:boolean \
 --underscored
 ```

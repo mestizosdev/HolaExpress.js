@@ -9,15 +9,13 @@ module.exports = {
       username: 'system',
       password: await passwordUtil.encrypt(password),
       email: 'system@mestizos.dev',
-      profile: 'Administrator',
-      status: true
+      role: 'Administrator'
     },
     {
       username: 'default',
       password: await passwordUtil.encrypt(password),
       email: 'default@mestizos.dev',
-      profile: 'Public',
-      status: true
+      role: 'Public'
     }], {})
   },
 

@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
    * @property {username} string
    * @property {password} string
    * @property {email} string
-   * @property {profile} string
+   * @property {role} string
    * @property {status} boolean
    */
     static associate (models) {
@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
     username: DataTypes.STRING,
     password: DataTypes.STRING,
     email: DataTypes.STRING,
-    profile: DataTypes.STRING,
+    role: DataTypes.STRING,
     status: DataTypes.BOOLEAN
   }, {
     sequelize,

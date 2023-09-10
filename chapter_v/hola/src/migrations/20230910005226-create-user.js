@@ -22,9 +22,10 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING
       },
-      profile: {
+      role: {
         allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        defaultValue: 'Public'
       },
       status: {
         allowNull: false,
