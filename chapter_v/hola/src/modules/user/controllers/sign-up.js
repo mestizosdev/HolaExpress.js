@@ -19,8 +19,9 @@ exports.signUp = async (req, res) => {
 
   if (isUserOrEmailExist.exist) {
     const warn = new WarnMessage(isUserOrEmailExist.message, '', __filename)
-    return res.status(404).json(
-      warn.message
+    return res.status(404).json({
+      message: warn.message
+    }
     )
   }
 
