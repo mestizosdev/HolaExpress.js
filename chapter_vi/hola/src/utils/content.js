@@ -23,6 +23,24 @@ class Content {
     )
     return content
   }
+
+  /**
+  * @param {ValidationError} error
+  * @returns {Content[]} content
+  */
+  static loadErrors (error) {
+    const content = []
+
+    error.array().forEach((e) => {
+      if (e.path === 'password') {
+        content.push(new Content(e.path, '', e.msg))
+      } else {
+        content.push(new Content(e.path, e.value, e.msg))
+      }
+    }
+    )
+    return content
+  }
 }
 
 module.exports = Content

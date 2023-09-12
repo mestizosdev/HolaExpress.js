@@ -2,9 +2,9 @@
 
 ## Content
 - Add validation on rest api
-
+- ErrorMessage
 ## Resources
-- https://github.com/mestizosdev/HolaExpress.js.git
+- https://express-validator.github.io/docs/
 
 ## Install dependencies
 ```

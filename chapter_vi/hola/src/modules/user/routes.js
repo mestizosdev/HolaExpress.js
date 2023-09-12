@@ -14,6 +14,9 @@ router.post('/signup',
     .withMessage('The username should have a more letters')
     .custom(value => !/\s/.test(value))
     .withMessage('The username not should have a blank spaces'),
+  body('password')
+    .isStrongPassword()
+    .withMessage('The password minimum 8 characters, minimum one upper case or lower case and minimum one symbol'),
   body('email').isEmail()
     .withMessage('Should have a valid email'),
   signUp)

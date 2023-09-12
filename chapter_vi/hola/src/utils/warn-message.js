@@ -3,6 +3,12 @@ const ErrorMessage = require('./error-message')
 const logger = require('./logger')
 
 class WarnMessage extends ErrorMessage {
+  /**
+     * @constructs
+     * @param {string} message
+     * @param {string} filename
+     * @param {Content[]} content
+     */
   constructor (message, filename, content = []) {
     super(message, filename, content)
 

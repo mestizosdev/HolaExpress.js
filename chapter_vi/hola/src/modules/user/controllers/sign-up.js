@@ -3,6 +3,8 @@
 const userService = require('../services')
 const validate = require('./helpers/is-username-or-email-register')
 const WarnMessage = require('../../../utils/warn-message')
+const { validationResult } = require('express-validator')
+const Content = require('../../../utils/content')
 
 /**
  * @name signUp user
@@ -10,6 +12,18 @@ const WarnMessage = require('../../../utils/warn-message')
  */
 exports.signUp = async (req, res) => {
   // #swagger.tags = ['User']
+  const errors = validationResult(req)
+
+  if (!errors.isEmpty()) {
+    const warn = new WarnMessage(
+      'Validation error',
+      __filename,
+      Content.loadErrors(errors)
+    )
+    return res.status(422).json(
+      warn.show()
+    )
+  }
 
   const { username, email, password } = req.body
 
