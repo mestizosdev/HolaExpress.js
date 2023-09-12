@@ -13,16 +13,15 @@ exports.signUp = async (req, res) => {
 
   const { username, email, password } = req.body
 
-  const isUserOrEmailExist = await validate.isUsernameOrEmailRegister(
+  const isExist = await validate.isUsernameOrEmailRegister(
     username, email
   )
 
-  if (isUserOrEmailExist.exist) {
-    const warn = new WarnMessage(isUserOrEmailExist.message, '', __filename)
+  if (isExist.exist) {
+    const warn = new WarnMessage(isExist.message, '', __filename)
     return res.status(404).json({
       message: warn.message
-    }
-    )
+    })
   }
 
   const user = await userService.create(
