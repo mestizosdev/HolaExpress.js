@@ -21,10 +21,12 @@ class ErrorMessage extends Error {
       })
     }
 
-    logger.error(` 
+    if ((this instanceof ErrorMessage)) {
+      logger.error(` 
     Message: ${this.message}.  
     Filename: ${this.filename}
     ${str}`)
+    }
   }
 
   show () {

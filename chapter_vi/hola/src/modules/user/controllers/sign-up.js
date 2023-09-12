@@ -18,10 +18,10 @@ exports.signUp = async (req, res) => {
   )
 
   if (isExist.exist) {
-    const warn = new WarnMessage(isExist.message, '', __filename)
-    return res.status(404).json({
-      message: warn.message
-    })
+    const warn = new WarnMessage(isExist.message, __filename)
+    return res.status(404).json(
+      warn.show()
+    )
   }
 
   const user = await userService.create(
