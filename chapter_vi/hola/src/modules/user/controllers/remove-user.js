@@ -2,6 +2,7 @@
 const { validationResult } = require('express-validator')
 
 const userService = require('../services')
+const WarnMessage = require('../../../utils/warn-message')
 
 /**
  * @name Delete user
@@ -20,9 +21,8 @@ exports.remove = async (req, res) => {
   const user = await userService.getById(req.params.id)
 
   if (!user) {
-    const message = 'User don\'t exist'
     return res.status(404).json(
-      { message }
+      new WarnMessage('User don\'t exist', __filename).show()
     )
   }
 

@@ -16,9 +16,7 @@ exports.signUp = async (req, res) => {
 
   if (!errors.isEmpty()) {
     const warn = new WarnMessage(
-      'Validation error',
-      __filename,
-      Content.loadErrors(errors)
+      'Validation error', __filename, Content.loadErrors(errors)
     )
     return res.status(422).json(
       warn.show()

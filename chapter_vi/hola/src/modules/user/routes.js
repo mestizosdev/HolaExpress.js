@@ -31,6 +31,9 @@ router.put('/user/:id',
     .withMessage('The username should have a more letters')
     .custom(value => !/\s/.test(value))
     .withMessage('The username not should have a blank spaces'),
+  body('password')
+    .isStrongPassword()
+    .withMessage('The password minimum 8 characters, minimum one upper case or lower case and minimum one symbol'),
   body('status').isBoolean(true)
     .withMessage('Should have a true or false in status'),
   body('email').isEmail()

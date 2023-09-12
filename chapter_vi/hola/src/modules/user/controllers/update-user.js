@@ -2,7 +2,8 @@
 const { validationResult } = require('express-validator')
 
 const userService = require('../services')
-// const ErrorMessage = require('../../../utils/error-message')
+const WarnMessage = require('../../../utils/warn-message')
+const Content = require('../../../utils/content')
 
 /**
  * @name Update user
@@ -14,16 +15,18 @@ exports.update = async (req, res) => {
 
   if (!errors.isEmpty()) {
     return res.status(422).json(
-      errors
+      new WarnMessage(
+        'Validation error', __filename, Content.loadErrors(errors)
+      ).show()
     )
   }
 
   const user = await userService.getById(req.params.id)
 
   if (!user) {
-    return res.status(404).json({
-      message: 'User don\'t exist'
-    })
+    return res.status(404).json(
+      new WarnMessage('User don\'t exist', __filename).show()
+    )
   }
 
   const { username, email, password, status } = req.body
@@ -32,9 +35,9 @@ exports.update = async (req, res) => {
     const exist = await userService.getByUsername(username)
 
     if (exist) {
-      return res.status(404).json({
-        message: `The username ${username} already exist`
-      })
+      return res.status(404).json(
+        new WarnMessage(`The username ${username} already exist`, __filename).show()
+      )
     }
   }
 
@@ -42,9 +45,9 @@ exports.update = async (req, res) => {
     const exist = await userService.getByEmail(email)
 
     if (exist) {
-      return res.status(404).json({
-        message: `The email ${email} already exist`
-      })
+      return res.status(404).json(
+        new WarnMessage(`The email ${email} already exist`, __filename).show()
+      )
     }
   }
 
