@@ -1,7 +1,7 @@
 # Chapter V
 
 ## Content
-- Add user model 
+- Add validation on rest api
 
 ## Resources
 - https://github.com/mestizosdev/HolaExpress.js.git

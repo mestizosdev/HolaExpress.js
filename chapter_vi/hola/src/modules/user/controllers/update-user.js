@@ -1,6 +1,7 @@
 /** @module user/controllers/update-user */
+const { validationResult } = require('express-validator')
+
 const userService = require('../services')
-const register = require('./helpers/is-username-or-email-register')
 
 /**
  * @name Update user
@@ -8,6 +9,13 @@ const register = require('./helpers/is-username-or-email-register')
 */
 exports.update = async (req, res) => {
   // #swagger.tags = ['User']
+  const errors = validationResult(req)
+
+  if (!errors.isEmpty()) {
+    return res.status(422).json(
+      { errors }
+    )
+  }
 
   const user = await userService.getById(req.params.id)
 
@@ -19,12 +27,24 @@ exports.update = async (req, res) => {
 
   const { username, email, password, status } = req.body
 
-  const isExist = await register.isUsernameOrEmailRegister(username, email)
+  if (user.username !== username) {
+    const exist = await userService.getByUsername(username)
 
-  if (isExist.exist) {
-    return res.status(404).json({
-      message: isExist.message
-    })
+    if (exist) {
+      return res.status(404).json({
+        message: `The username ${username} already exist`
+      })
+    }
+  }
+
+  if (user.email !== email) {
+    const exist = await userService.getByEmail(email)
+
+    if (exist) {
+      return res.status(404).json({
+        message: `The email ${email} already exist`
+      })
+    }
   }
 
   const userUpdated = await userService.update(
