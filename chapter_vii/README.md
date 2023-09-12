@@ -1,9 +1,7 @@
-# Chapter VI
+# Chapter VII
 
 ## Content
-- Add validation on rest api
-- ErrorMessage
-- WarnMessage
+- Login
 ## Resources
 - https://express-validator.github.io/docs/
 
