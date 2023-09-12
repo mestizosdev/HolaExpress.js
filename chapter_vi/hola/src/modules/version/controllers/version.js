@@ -26,7 +26,7 @@ exports.getVersion = async (req, res) => {
       }
     })
   } catch (e) {
-    const error = new ErrorMessage(e.message, __filename, [])
+    const error = new ErrorMessage(e.message, __filename)
     return res.status(503).json(
       error.show()
     )

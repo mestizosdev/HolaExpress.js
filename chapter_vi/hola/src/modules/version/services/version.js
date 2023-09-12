@@ -11,7 +11,7 @@ const Content = require('../../../utils/content')
 */
 exports.getVersion = async () => {
   const version = await db.sequelize
-    .query('SELECT version() as version_database', {
+    .query('SELECT versiono() as version_database', {
       type: QueryTypes.SELECT
     }).catch((error) => {
       throw new ErrorMessage(

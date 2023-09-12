@@ -8,22 +8,23 @@ class ErrorMessage extends Error {
      * @param {string} filename
      * @param {Content[]} content
      */
-  constructor (message, filename, content) {
+  constructor (message, filename, content = []) {
     super(message)
     this.content = content
     this.filename = filename
 
-    logger.error(` 
-          Message: ${this.message}.  
-          Filename: ${this.filename}
-          `)
-
-    if (content.length > 0) {
-      logger.error('Content:')
-      content.forEach(function (c) {
-        logger.error(`${c.field} ${c.value} ${c.message}`)
+    let str = ''
+    if (this.content.length > 0) {
+      str += 'Content:\n'
+      this.content.forEach((c) => {
+        str += `    ${c.field} ${c.value} ${c.message}\n`
       })
     }
+
+    logger.error(` 
+    Message: ${this.message}.  
+    Filename: ${this.filename}
+    ${str}`)
   }
 
   show () {
