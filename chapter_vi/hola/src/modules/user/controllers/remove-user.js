@@ -1,4 +1,6 @@
 /** @module user/controllers/remove-user */
+const { validationResult } = require('express-validator')
+
 const userService = require('../services')
 
 /**
@@ -7,6 +9,13 @@ const userService = require('../services')
 */
 exports.remove = async (req, res) => {
   // #swagger.tags = ['User']
+  const errors = validationResult(req)
+
+  if (!errors.isEmpty()) {
+    return res.status(422).json(
+      errors
+    )
+  }
 
   const user = await userService.getById(req.params.id)
 

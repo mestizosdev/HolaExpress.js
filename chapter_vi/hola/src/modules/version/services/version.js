@@ -2,7 +2,7 @@
 const db = require('../../../models')
 const { QueryTypes } = require('sequelize')
 const ErrorMessage = require('../../../utils/error-message')
-
+const Content = require('../../../utils/content')
 /**
  * Get version
  *
@@ -15,7 +15,9 @@ exports.getVersion = async () => {
       type: QueryTypes.SELECT
     }).catch((error) => {
       throw new ErrorMessage(
-        'Database error', error.message + ' | ' + error.sql, __filename
+        'Database error',
+        __filename,
+        Content.load([error.message, error.sql])
       )
     })
 

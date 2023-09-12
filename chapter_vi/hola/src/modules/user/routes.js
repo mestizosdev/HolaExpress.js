@@ -6,6 +6,18 @@ const { signUp, list, update, remove } = require('./controllers/index')
 
 router.get('/users', list)
 
+router.post('/signup',
+  body('username')
+    .not().isEmpty()
+    .withMessage('Should have a username')
+    .isLength(2)
+    .withMessage('The username should have a more letters')
+    .custom(value => !/\s/.test(value))
+    .withMessage('The username not should have a blank spaces'),
+  body('email').isEmail()
+    .withMessage('Should have a valid email'),
+  signUp)
+
 router.put('/user/:id',
   param('id').toInt().notEmpty()
     .withMessage('Should have a numeric identifier'),
@@ -22,8 +34,9 @@ router.put('/user/:id',
     .withMessage('Should have a valid email'),
   update)
 
-router.post('/signup', signUp)
-
-router.delete('/user/:id', remove)
+router.delete('/user/:id',
+  param('id').toInt().notEmpty()
+    .withMessage('Should have a numeric identifier'),
+  remove)
 
 module.exports = router

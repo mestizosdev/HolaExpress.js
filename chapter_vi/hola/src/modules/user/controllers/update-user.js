@@ -2,6 +2,7 @@
 const { validationResult } = require('express-validator')
 
 const userService = require('../services')
+// const ErrorMessage = require('../../../utils/error-message')
 
 /**
  * @name Update user
@@ -13,7 +14,7 @@ exports.update = async (req, res) => {
 
   if (!errors.isEmpty()) {
     return res.status(422).json(
-      { errors }
+      errors
     )
   }
 
