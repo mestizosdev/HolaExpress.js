@@ -13,20 +13,10 @@ class ErrorMessage extends Error {
     this.content = content
     this.filename = filename
 
-    let str = ''
-    if (this.content.length > 0) {
-      str += 'Content:\n'
-      this.content.forEach((c) => {
-        str += `    ${c.field} ${c.value} ${c.message}\n`
-      })
-    }
-
-    if ((this instanceof ErrorMessage)) {
-      logger.error(` 
+    logger.error(` 
     Message: ${this.message}.  
     Filename: ${this.filename}
-    ${str}`)
-    }
+    Content: ${JSON.stringify(this.content)}`)
   }
 
   show () {

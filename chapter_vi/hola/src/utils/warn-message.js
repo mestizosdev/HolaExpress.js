@@ -1,8 +1,7 @@
 /** @module utils/warn-message */
-const ErrorMessage = require('./error-message')
 const logger = require('./logger')
 
-class WarnMessage extends ErrorMessage {
+class WarnMessage extends Error {
   /**
      * @constructs
      * @param {string} message
@@ -10,13 +9,21 @@ class WarnMessage extends ErrorMessage {
      * @param {Content[]} content
      */
   constructor (message, filename, content = []) {
-    super(message, filename, content)
+    super(message)
+    this.content = content
+    this.filename = filename
 
     logger.warn(` 
-          Message: ${this.message}. 
-          Filename: ${this.filename}
-          Content: ${this.content}
-          `)
+    Message: ${this.message}. 
+    Filename: ${this.filename}
+    Content: ${JSON.stringify(this.content)}`)
+  }
+
+  show () {
+    return {
+      message: this.message,
+      content: this.content
+    }
   }
 }
 
