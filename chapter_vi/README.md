@@ -1,10 +1,7 @@
 # Chapter V
 
 ## Content
-- Add user model
-- Add migration
-- Add seeder
-- Add CRUD for user
+- Add user model 
 
 ## Resources
 - https://github.com/mestizosdev/HolaExpress.js.git
