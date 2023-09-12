@@ -16,7 +16,7 @@ exports.update = async (req, res) => {
   if (!errors.isEmpty()) {
     return res.status(422).json(
       new WarnMessage(
-        'Validation error', __filename, Content.loadErrors(errors)
+        'Validation error', __filename, Content.loadError(errors)
       ).show()
     )
   }

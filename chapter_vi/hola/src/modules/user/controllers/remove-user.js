@@ -3,6 +3,7 @@ const { validationResult } = require('express-validator')
 
 const userService = require('../services')
 const WarnMessage = require('../../../utils/warn-message')
+const Content = require('../../../utils/content')
 
 /**
  * @name Delete user
@@ -14,7 +15,8 @@ exports.remove = async (req, res) => {
 
   if (!errors.isEmpty()) {
     return res.status(422).json(
-      errors
+      new WarnMessage('Validation error', __filename, Content.loadError(errors))
+        .show()
     )
   }
 

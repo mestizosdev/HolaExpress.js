@@ -28,7 +28,7 @@ class Content {
   * @param {ValidationError} error
   * @returns {Content[]} content
   */
-  static loadErrors (error) {
+  static loadError (error) {
     const content = []
 
     error.array().forEach((e) => {
