@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const { param, body } = require('express-validator')
 
-const { signUp, list, update, remove } = require('./controllers/index')
+const { signUp, signIn, list, update, remove } = require('./controllers/index')
 
 router.get('/users', list)
 
@@ -20,6 +20,15 @@ router.post('/signup',
   body('email').isEmail()
     .withMessage('Should have a valid email'),
   signUp)
+
+router.post('/signin',
+  body('username')
+    .not().isEmpty()
+    .withMessage('Username is required'),
+  body('password')
+    .not().isEmpty()
+    .withMessage('Password is required'),
+  signIn)
 
 router.put('/user/:id',
   param('id').toInt().notEmpty()
