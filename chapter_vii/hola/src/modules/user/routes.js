@@ -55,7 +55,7 @@ router.put('/user/:id',
   update)
 
 router.delete('/user/:id',
-  [checkJwt, checkRole(['Administrator', 'Manager'])],
+  [checkJwt, checkRole(['Administrator'])],
   param('id')
     .toInt()
     .notEmpty()
