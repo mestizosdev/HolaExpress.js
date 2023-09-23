@@ -12,6 +12,14 @@ const doc = {
     version: pkg.version,
     title: 'HolaExpress.js'
   },
+  components: {
+    securitySchemes: {
+      bearerAuth: {
+        type: 'http',
+        scheme: 'bearer'
+      }
+    }
+  },
   host: `localhost:${PORT}`
 }
 

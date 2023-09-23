@@ -6,6 +6,7 @@ const userService = require('../services')
  * @path {GET} /users
 */
 exports.list = async (req, res) => {
+  // ##swagger.security = [{"bearerAuth": []}]
   // #swagger.tags = ['User']
 
   const users = await userService.getAll()

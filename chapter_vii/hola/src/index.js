@@ -15,7 +15,7 @@ const ENV = process.env.NODE_ENV
 
 if (ENV === 'development') {
   server.use(morgan('dev'))
-  swaggerDocs(server, PORT)
+  swaggerDocs(server)
 }
 
 server.use(express.json()) // body parser

@@ -7,9 +7,10 @@ const Content = require('../../../utils/content')
 
 /**
  * @name Update user
- * @path {PUT} /overlord/v1/user/:id
+ * @path {PUT} /user/:id
 */
 exports.update = async (req, res) => {
+  // ##swagger.security = [{"bearerAuth": []}]
   // #swagger.tags = ['User']
   const errors = validationResult(req)
 

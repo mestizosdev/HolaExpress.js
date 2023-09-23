@@ -79,12 +79,7 @@
           "401": {
             "description": "Unauthorized"
           }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ]
+        }
       }
     },
     "/signup": {
@@ -202,11 +197,6 @@
             "description": "Unprocessable Entity"
           }
         },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -266,20 +256,16 @@
           "422": {
             "description": "Unprocessable Entity"
           }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ]
+        }
       }
     }
   },
   "components": {
     "securitySchemes": {
-      "bearerAuth": {
-        "type": "http",
-        "scheme": "bearer"
+      "JWT": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "access_token"
       }
     }
   }

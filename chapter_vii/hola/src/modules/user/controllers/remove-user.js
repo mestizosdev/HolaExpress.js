@@ -7,9 +7,10 @@ const Content = require('../../../utils/content')
 
 /**
  * @name Delete user
- * @path {DELETE} /overlord/v1/user/:id
+ * @path {DELETE} /user/:id
 */
 exports.remove = async (req, res) => {
+  // ##swagger.security = [{"bearerAuth": []}]
   // #swagger.tags = ['User']
   const errors = validationResult(req)
 
