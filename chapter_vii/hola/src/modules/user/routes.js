@@ -3,8 +3,12 @@ const router = express.Router()
 const { param, body } = require('express-validator')
 
 const { signUp, signIn, list, update, remove } = require('./controllers/index')
+const { checkJwt } = require('../../middlewares/check-jwt')
+const { checkRole } = require('../../middlewares/check-role')
 
-router.get('/users', list)
+router.get('/users',
+  [checkJwt, checkRole(['Administrator', 'Manager'])],
+  list)
 
 router.post('/signup',
   body('username')
@@ -31,6 +35,7 @@ router.post('/signin',
   signIn)
 
 router.put('/user/:id',
+  [checkJwt, checkRole(['Administrator', 'Manager'])],
   param('id').toInt().notEmpty()
     .withMessage('Should have a numeric identifier'),
   body('username')
@@ -50,7 +55,10 @@ router.put('/user/:id',
   update)
 
 router.delete('/user/:id',
-  param('id').toInt().notEmpty()
+  [checkJwt, checkRole(['Administrator', 'Manager'])],
+  param('id')
+    .toInt()
+    .notEmpty()
     .withMessage('Should have a numeric identifier'),
   remove)
 
