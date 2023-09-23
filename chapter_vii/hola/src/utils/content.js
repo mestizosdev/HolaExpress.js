@@ -41,6 +41,16 @@ class Content {
     )
     return content
   }
+
+  /**
+  * @param {string} message
+  * @returns {Content[]} content
+  */
+  static loadMessage (message) {
+    const content = []
+    content.push(new Content('', '', message))
+    return content
+  }
 }
 
 module.exports = Content

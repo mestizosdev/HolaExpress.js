@@ -12,6 +12,12 @@ module.exports = {
       role: 'Administrator'
     },
     {
+      username: 'manager',
+      password: await passwordUtil.encrypt(password),
+      email: 'manager@mestizos.dev',
+      role: 'Manager'
+    },
+    {
       username: 'default',
       password: await passwordUtil.encrypt(password),
       email: 'default@mestizos.dev',
