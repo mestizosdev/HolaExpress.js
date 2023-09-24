@@ -10,7 +10,7 @@ AuthProvider.propTypes = {
 }
 
 export function AuthProvider({ children }) {
-  const [isAuthenticated] = useState(false)
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
 
   return (
     <AuthContext.Provider value={{ isAuthenticated }}>
