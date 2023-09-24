@@ -2,7 +2,7 @@
 const userService = require('../services')
 
 /**
- * @name Get users
+ * @name list users
  * @path {GET} /users
 */
 exports.list = async (req, res) => {

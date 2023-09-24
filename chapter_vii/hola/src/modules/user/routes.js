@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const { param, body } = require('express-validator')
 
-const { signUp, signIn, list, update, remove } = require('./controllers/index')
+const { signUp, signIn, refreshToken, list, update, remove } = require('./controllers/index')
 const { checkJwt } = require('../../middlewares/check-jwt')
 const { checkRole } = require('../../middlewares/check-role')
 
@@ -33,6 +33,8 @@ router.post('/signin',
     .not().isEmpty()
     .withMessage('Password is required'),
   signIn)
+
+router.post('/refresh-token', refreshToken)
 
 router.put('/user/:id',
   [checkJwt, checkRole(['Administrator', 'Manager'])],

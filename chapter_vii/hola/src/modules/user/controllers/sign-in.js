@@ -9,7 +9,7 @@ const passwordUtil = require('../../../utils/password')
 const Content = require('../../../utils/content')
 
 /**
- * @name signIn user
+ * @name signIn token
  * @path {POST} /signin
  */
 exports.signIn = async (req, res) => {
