@@ -1,8 +1,13 @@
-import { useContext, createContext, useState, useEffect } from "react"
+import { useContext, createContext, useState } from 'react'
+import PropTypes from 'prop-types'
 
 const AuthContext = createContext({
-  isAuthenticated: false,
+  isAuthenticated: false
 })
+
+AuthProvider.propTypes = {
+    children: PropTypes.node,
+  };
 
 export function AuthProvider({children}) {
     const [isAuthenticated] = useState(false)

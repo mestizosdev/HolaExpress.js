@@ -33,3 +33,8 @@ overrides: [
 pnpm i react-router-dom
 ```
 ## Add in main.jsx the route
+
+## Runtime type checking for React props and similar objects.
+```
+pnpm i prop-types
+```
