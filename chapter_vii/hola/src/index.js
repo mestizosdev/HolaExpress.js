@@ -2,6 +2,7 @@ const express = require('express')
 const dotenv = require('dotenv')
 const path = require('path')
 const morgan = require('morgan')
+const cors = require('cors')
 
 const routes = require('./routes')
 const { swaggerDocs } = require('./modules/swagger/routes')
@@ -19,7 +20,7 @@ if (ENV === 'development') {
 }
 
 server.use(express.json()) // body parser
-
+server.use(cors())
 for (const route in routes) {
   server.use(routes[route])
 }

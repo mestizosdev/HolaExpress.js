@@ -12,11 +12,11 @@ const Content = require('../../../utils/content')
  */
 exports.signUp = async (req, res) => {
   // #swagger.tags = ['User']
-  const errors = validationResult(req)
+  const error = validationResult(req)
 
-  if (!errors.isEmpty()) {
+  if (!error.isEmpty()) {
     const warn = new WarnMessage(
-      'Validation error', __filename, Content.loadErrors(errors)
+      'Validation error', __filename, Content.loadError(error)
     )
     return res.status(422).json(
       warn.show()

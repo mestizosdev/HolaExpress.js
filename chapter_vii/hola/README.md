@@ -36,3 +36,7 @@ app.get('/path', (req, res) => {
     ...
 });
 ```
+## Cross-origin resource sharing
+```
+pnpm i cors
+```
