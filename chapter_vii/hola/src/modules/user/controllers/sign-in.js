@@ -14,12 +14,12 @@ const Content = require('../../../utils/content')
  */
 exports.signIn = async (req, res) => {
   // #swagger.tags = ['User']
-  const errors = validationResult(req)
+  const error = validationResult(req)
 
-  if (!errors.isEmpty()) {
+  if (!error.isEmpty()) {
     return res.status(422).json(
       new WarnMessage(
-        'Validation error', __filename, Content.loadErrors(errors)
+        'Validation error', __filename, Content.loadError(error)
       ).show()
     )
   }
@@ -57,7 +57,7 @@ exports.signIn = async (req, res) => {
   } catch (error) {
     return res.status(501).json(
       new ErrorMessage(
-        'JWT error', __filename, Content.loadError(error)
+        'JWT error', __filename, Content.loadMessage(error)
       ).show()
     )
   }
