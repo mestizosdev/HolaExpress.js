@@ -1,10 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
-import {
-  createBrowserRouter,
-  RouterProvider
-} from 'react-router-dom'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Login from './routes/Login.jsx'
 import Signup from './routes/Signup.jsx'
 import Dashboard from './routes/Dashboard.jsx'
@@ -23,10 +20,10 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <ProtectedRoute />,
-    children : [
+    children: [
       {
         path: 'dashboard',
-        element: <Dashboard/>
+        element: <Dashboard />
       }
     ]
   }
@@ -35,7 +32,7 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <AuthProvider>
-      <RouterProvider router={router}/>
+      <RouterProvider router={router} />
     </AuthProvider>
   </React.StrictMode>
 )

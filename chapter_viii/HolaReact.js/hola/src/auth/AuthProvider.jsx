@@ -6,17 +6,17 @@ const AuthContext = createContext({
 })
 
 AuthProvider.propTypes = {
-    children: PropTypes.node,
-  };
+  children: PropTypes.node
+}
 
-export function AuthProvider({children}) {
-    const [isAuthenticated] = useState(false)
+export function AuthProvider({ children }) {
+  const [isAuthenticated] = useState(false)
 
-    return(
-        <AuthContext.Provider value={{ isAuthenticated }}>
-            { children }
-        </AuthContext.Provider>
-    )
+  return (
+    <AuthContext.Provider value={{ isAuthenticated }}>
+      {children}
+    </AuthContext.Provider>
+  )
 }
 
 export const useAuth = () => useContext(AuthContext)
