@@ -78,3 +78,5 @@ sequelize --help
 ```
 pnpm add winston
 ```
+
+dmidecode | grep -A3 '^System Information'
